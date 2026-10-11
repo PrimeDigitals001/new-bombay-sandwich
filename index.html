@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.classList.add('js', 'prep'); setTimeout(function () { document.documentElement.classList.remove('prep'); }, 5000);</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>New Bombay Sandwich, Bharuch | Grill sandwiches, puffs, pizza and cold coffee since 2014</title>
+  <meta name="description" content="New Bombay Sandwich, EVON Chowk, Bharuch. Bombay style grill sandwiches, puffs, pizza, burgers, Maggi and cold coffee since 2014. 100% veg. Order on WhatsApp: 79905 42134.">
+  <meta name="theme-color" content="#e2231a">
+  <meta property="og:title" content="New Bombay Sandwich, Bharuch">
+  <meta property="og:description" content="Bombay style grill sandwiches in Bharuch since 2014. Love is our main ingredient.">
+  <meta property="og:image" content="assets/img/paneer-tikka.jpg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23e2231a'/><text x='32' y='44' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='30' fill='%23ffc72c'>NB</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Baloo+Bhai+2:wght@500;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/cut/sandwich-whole.webp">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "New Bombay Sandwich",
+    "servesCuisine": ["Sandwiches", "Pizza", "Burgers", "Indian Street Food", "Vegetarian"],
+    "priceRange": "₹",
+    "foundingDate": "2014",
+    "slogan": "Love is our main ingredient",
+    "telephone": "+91-7990542134",
+    "address": { "@type": "PostalAddress", "streetAddress": "EVON Chowk, Madhuram Party Plot", "addressLocality": "Bharuch", "addressRegion": "Gujarat", "postalCode": "392011", "addressCountry": "IN" },
+    "geo": { "@type": "GeoCoordinates", "latitude": 21.7178471406871, "longitude": 73.0367061528276 },
+    "openingHours": "Mo-Su 11:00-23:00",
+    "sameAs": ["https://www.instagram.com/newbombaysandwich.co"]
+  }
+  </script>
+</head>
+<body class="is-loading">
+
+  <!-- ============ Header ============ -->
+  <header class="top" id="top">
+    <a class="logo" href="#top" aria-label="New Bombay Sandwich, home">
+      <span class="logo__a">New Bombay</span>
+      <span class="logo__b">Sandwich</span>
+    </a>
+    <nav class="top__nav" aria-label="Primary">
+      <a href="#menu">Menu</a>
+      <a href="#build">What goes in</a>
+      <a href="#order">Order ahead</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="btn btn--red top__cta" data-wa="Hi New Bombay Sandwich! I'd like to place an order." href="#" target="_blank" rel="noopener">Order now</a>
+  </header>
+
+  <!-- Compact bar that drops in after the hero -->
+  <div class="bar" id="bar">
+    <a class="bar__logo" href="#top" aria-label="Back to top">NB</a>
+    <nav class="bar__nav" aria-label="Sections">
+      <a href="#menu">Menu</a><a href="#order">Order</a><a href="#visit">Visit</a>
+    </nav>
+    <a class="btn btn--yellow btn--sm bar__order" data-wa="Hi New Bombay Sandwich! I'd like to place an order." href="#" target="_blank" rel="noopener">Order</a>
+    <button class="bar__menu" id="menuBtn" aria-expanded="false" aria-controls="sheet">Menu</button>
+  </div>
+
+  <div class="sheet" id="sheet" aria-hidden="true">
+    <nav class="sheet__links" aria-label="Mobile">
+      <a href="#menu">Menu board</a>
+      <a href="#build">What goes in</a>
+      <a href="#order">Order ahead</a>
+      <a href="#visit">Find us</a>
+    </nav>
+    <div class="sheet__foot">
+      <a class="btn btn--red" data-wa="Hi New Bombay Sandwich! I'd like to place an order." href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+      <a class="btn btn--cream" data-tel href="#">Call the shop</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============ Hero ============ -->
+    <section class="hero" aria-labelledby="hero-h">
+      <h1 class="sr-only" id="hero-h">New Bombay Sandwich. Bombay style grilled sandwiches in Bharuch.</h1>
+
+      <div class="hero__stage" id="stage">
+        <p class="hero__big" aria-hidden="true"><span>B</span><span>O</span><span>M</span><span>B</span><span>A</span><span>Y</span></p>
+        <p class="hero__logo" aria-hidden="true">Sandwich</p>
+
+        <!-- One sandwich, two halves. Both show the same photo, clipped corner to corner. -->
+        <i class="whole-shadow" id="wholeShadow" aria-hidden="true"></i>
+        <div class="half half--a" role="img" aria-label="A Bombay grilled sandwich, cut corner to corner"><span class="half__face" aria-hidden="true"><i></i></span><img src="assets/cut/sandwich-whole.webp" alt="" fetchpriority="high"></div>
+        <div class="half half--b" aria-hidden="true"><span class="half__face" aria-hidden="true"><i></i></span><img src="assets/cut/sandwich-whole.webp" alt=""></div>
+
+        <div class="slice" id="slice" aria-hidden="true">
+          <i class="slice__line"></i>
+          <i class="crumb"></i><i class="crumb"></i><i class="crumb"></i><i class="crumb"></i><i class="crumb"></i><i class="crumb"></i><i class="crumb"></i><i class="crumb"></i>
+          <div class="knife" id="knife">
+            <svg viewBox="0 0 400 90">
+              <path d="M6 44C40 28 74 24 116 24H262V66H122C74 66 36 60 6 44Z" fill="#e9e4dc" stroke="#161210" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M30 47C64 57 92 59 128 59H254" fill="none" stroke="#fffdf8" stroke-width="5" stroke-linecap="round"/>
+              <path d="M118 33H246" fill="none" stroke="#bdb6ab" stroke-width="4" stroke-linecap="round"/>
+              <rect x="258" y="17" width="20" height="56" rx="5" fill="#9a938a" stroke="#161210" stroke-width="5"/>
+              <rect x="276" y="24" width="118" height="42" rx="18" fill="#e2231a" stroke="#161210" stroke-width="5"/>
+              <circle cx="306" cy="45" r="5.5" fill="#f6e7cd" stroke="#161210" stroke-width="2.5"/>
+              <circle cx="335" cy="45" r="5.5" fill="#f6e7cd" stroke="#161210" stroke-width="2.5"/>
+              <circle cx="364" cy="45" r="5.5" fill="#f6e7cd" stroke="#161210" stroke-width="2.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <span class="sticker hero__sticker" aria-hidden="true">Since<br>2014</span>
+      </div>
+
+      <div class="hero__foot">
+        <div class="hero__ctas">
+          <a class="btn btn--red" href="#menu">See the menu</a>
+          <a class="btn btn--ink" href="#order">Order ahead</a>
+        </div>
+        <p class="hero__side">EVON Chowk, Bharuch. 100% veg. Open 11 AM to 11 PM.</p>
+      </div>
+    </section>
+
+    <!-- ============ Routine ============ -->
+    <section class="routine" aria-labelledby="routine-h">
+      <div class="wave wave--red wave--top" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 50C160 10 300 10 480 40S800 90 980 50 1300 0 1440 30V90H0Z"/></svg></div>
+      <h2 class="sr-only" id="routine-h">What we make</h2>
+      <div class="routine__lines" aria-hidden="true">
+        <p class="routine__line" data-dir="-1"><span>Grill sandwich</span><img src="assets/cut/bread.webp" alt=""><span>Grill sandwich</span><img src="assets/cut/bread.webp" alt=""><span>Grill sandwich</span><img src="assets/cut/bread.webp" alt=""></p>
+        <p class="routine__line routine__line--y" data-dir="1"><span>Puff · Pizza · Maggi</span><img src="assets/cut/chilli.webp" alt=""><span>Puff · Pizza · Maggi</span><img src="assets/cut/chilli.webp" alt=""><span>Puff · Pizza · Maggi</span><img src="assets/cut/chilli.webp" alt=""></p>
+        <p class="routine__line" data-dir="-1"><span>Cold coffee</span><img src="assets/cut/tomato-1.webp" alt=""><span>Maska bun</span><img src="assets/cut/tomato-1.webp" alt=""><span>Cold coffee</span><img src="assets/cut/tomato-1.webp" alt=""></p>
+      </div>
+
+      <div class="wrap routine__body">
+        <p class="routine__text">Grilling Bombay style sandwiches in Bharuch since 2014. The menu has grown to 15 sections, from a ₹20 single slice to the 3 layer Junglee Grill. Love is still the main ingredient.</p>
+        <div class="photos">
+          <figure class="photo photo--a" data-speed="-0.12"><img src="assets/img/stall.jpg" alt="A busy Indian street food stall" loading="lazy"></figure>
+          <figure class="photo photo--b" data-speed="0.1"><img src="assets/img/veg-toast.jpg" alt="Toasted Bombay veg sandwich, close up" loading="lazy"></figure>
+          <figure class="photo photo--c" data-speed="-0.2"><img src="assets/img/vada-pav.jpg" alt="Vada pav with a fried green chilli" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Build (pinned) ============ -->
+    <section class="build" id="build" aria-labelledby="build-h">
+      <div class="wave wave--cream wave--top" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 30C200 80 380 90 560 50S900 0 1080 40 1320 80 1440 40V90H0Z"/></svg></div>
+      <div class="build__pin">
+        <h2 class="build__title" id="build-h"><span>What</span><span>goes in</span></h2>
+        <p class="build__hint">Our Veg Cheese Grill, one layer at a time. Keep scrolling.</p>
+
+        <div class="build__stack" aria-hidden="true">
+          <img class="b-item b-bread" src="assets/cut/bread.webp" alt="">
+          <img class="b-item b-cuc" src="assets/cut/cucumbers.webp" alt="">
+          <img class="b-item b-tom" src="assets/cut/tomato-1.webp" alt="">
+          <img class="b-item b-tom2" src="assets/cut/tomato-2.webp" alt="">
+          <img class="b-item b-chilli" src="assets/cut/chilli.webp" alt="">
+          <img class="b-item b-grill" src="assets/cut/grill-pair.webp" alt="">
+        </div>
+
+        <ol class="build__tags">
+          <li class="sticker tag t1">Fresh bread</li>
+          <li class="sticker sticker--green tag t2">Cucumber</li>
+          <li class="sticker tag t3">Tomato</li>
+          <li class="sticker sticker--green tag t4">Green chilli. Your call</li>
+          <li class="sticker sticker--yellow tag t5">Cheese. Grilled hot</li>
+        </ol>
+
+        <p class="build__price"><b>₹100</b> Veg Cheese Grill, 2 layer.</p>
+      </div>
+    </section>
+
+    <!-- ============ Menu board ============ -->
+    <!-- Menu rendered from js/menu-data.js (the shop's real menu from Druto) -->
+    <section class="board" id="menu" aria-labelledby="menu-h">
+      <div class="wave wave--ink wave--top" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 50C160 10 300 10 480 40S800 90 980 50 1300 0 1440 30V90H0Z"/></svg></div>
+      <div class="wrap">
+        <div class="board__head">
+          <h2 class="board__title" id="menu-h">The menu board</h2>
+          <p class="board__note"><span class="veg" aria-hidden="true"></span>100% veg. 15 sections. Prices in ₹.</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Menu sections" id="tabs"></div>
+
+        <div class="board__grid">
+          <ul class="rows" id="rows" role="tabpanel"></ul>
+
+          <aside class="plate" id="plate" aria-live="polite">
+            <figure class="plate__photo"><img id="pImg" src="assets/img/paneer-tikka.jpg" alt=""></figure>
+            <div class="plate__body">
+              <p class="plate__price" id="pPrice"></p>
+              <h3 class="plate__name" id="pName"></h3>
+              <p class="plate__desc" id="pDesc"></p>
+              <p class="plate__vars" id="pVars"></p>
+              <a class="btn btn--yellow" id="pOrder" href="#" target="_blank" rel="noopener">Order this</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Drinks ============ -->
+    <section class="drinks" aria-labelledby="drinks-h">
+      <div class="wave wave--green wave--top" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 30C200 80 380 90 560 50S900 0 1080 40 1320 80 1440 40V90H0Z"/></svg></div>
+      <div class="wrap">
+        <h2 class="drinks__title" id="drinks-h">Cold coffee & something sweet</h2>
+        <div class="shelf">
+          <figure class="drink" data-speed="-0.1">
+            <img src="assets/cut/cold-coffee.webp" alt="Classic cold coffee with whipped cream" loading="lazy">
+            <figcaption><b>Classic Cold Coffee</b><span class="price-tag">₹70</span></figcaption>
+          </figure>
+          <figure class="drink" data-speed="0.06">
+            <img src="assets/cut/oreo-shake.webp" alt="Choco mocho cold coffee in a tall glass" loading="lazy">
+            <figcaption><b>Choco Mocho Cold Coffee</b><span class="price-tag">₹90</span></figcaption>
+          </figure>
+          <figure class="drink" data-speed="-0.16">
+            <img class="drink__brownie" src="assets/cut/brownie.webp" alt="Brownie topped with ice cream and chocolate" loading="lazy">
+            <figcaption><b>Brownie with Ice Cream</b><span class="price-tag">₹100</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Order ahead ============ -->
+    <section class="events" id="order" aria-labelledby="order-h">
+      <div class="wave wave--yellow wave--top" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 50C160 10 300 10 480 40S800 90 980 50 1300 0 1440 30V90H0Z"/></svg></div>
+      <div class="wrap events__head">
+        <h2 class="events__title" id="order-h"><span>Order ahead.</span><span class="events__sub">Skip the wait at the counter.</span></h2>
+        <div>
+          <p class="events__text">Know what you want? Send it on WhatsApp or give us a call, and it will be hot off the grill by the time you reach EVON Chowk.</p>
+          <ul class="kinds">
+            <li class="sticker">Grill sandwich</li>
+            <li class="sticker sticker--green">Puff</li>
+            <li class="sticker sticker--ink">Pizza</li>
+            <li class="sticker">Maggi</li>
+            <li class="sticker sticker--green">Cold coffee</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="route" id="route">
+        <svg class="route__svg" id="routeSvg" aria-hidden="true"><path id="road" class="route__road"/><path id="roadDash" class="route__dash"/></svg>
+
+        <div class="taxi" id="taxi" aria-hidden="true">
+          <svg viewBox="0 0 200 100">
+            <path d="M54 46 72 20q4-5 10-5h44q6 0 10 5l18 26z" fill="#ffc72c" stroke="#161210" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M70 43 81 24h19v19z" fill="#bfe4ef" stroke="#161210" stroke-width="3.5" stroke-linejoin="round"/>
+            <path d="M107 43V24h18l14 19z" fill="#bfe4ef" stroke="#161210" stroke-width="3.5" stroke-linejoin="round"/>
+            <rect x="88" y="4" width="30" height="11" rx="3" fill="#161210"/>
+            <text x="103" y="13" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="8" fill="#ffc72c">TAXI</text>
+            <path d="M14 50q0-6 7-6h156q11 0 13 9l2 13q0 9-9 9H20q-8 0-8-8z" fill="#161210"/>
+            <circle cx="184" cy="55" r="4.5" fill="#fff4c2"/>
+            <rect x="12" y="52" width="6" height="7" rx="2" fill="#e2231a"/>
+            <path d="M104 46v26" stroke="#4a3f38" stroke-width="2.5"/>
+            <g class="wheel"><circle cx="54" cy="75" r="14" fill="#161210"/><circle cx="54" cy="75" r="6" fill="#d8d2c8"/><path d="M54 63v24M42 75h24" stroke="#161210" stroke-width="3"/></g>
+            <g class="wheel"><circle cx="150" cy="75" r="14" fill="#161210"/><circle cx="150" cy="75" r="6" fill="#d8d2c8"/><path d="M150 63v24M138 75h24" stroke="#161210" stroke-width="3"/></g>
+          </svg>
+        </div>
+
+        <article class="stop" data-at="0.2">
+          <figure class="photo"><img src="assets/img/masala-grilled.jpg" alt="Grilled sandwiches on a wooden tray" loading="lazy"></figure>
+          <div class="stop__txt"><span class="stop__n">Stop 1</span><h3>Pick your craving</h3><p>126 things on the menu board. Grill, puff, pizza, Maggi, cold coffee. Take your time.</p></div>
+        </article>
+        <article class="stop" data-at="0.52">
+          <figure class="photo"><img src="assets/img/cold-coffee.jpg" alt="Cold coffee with whipped cream" loading="lazy"></figure>
+          <div class="stop__txt"><span class="stop__n">Stop 2</span><h3>Send it on WhatsApp</h3><p>Or call 79905 42134. Tell us what you want and when you're coming.</p></div>
+        </article>
+        <article class="stop" data-at="0.84">
+          <figure class="photo"><img src="assets/img/maska-bun.jpg" alt="Holding a fresh maska bun on the street" loading="lazy"></figure>
+          <div class="stop__txt"><span class="stop__n">Stop 3</span><h3>Collect it hot</h3><p>EVON Chowk, near Madhuram Party Plot. Open 11 AM to 11 PM, every day.</p></div>
+        </article>
+      </div>
+
+      <div class="wrap">
+        <div class="quote order-card">
+          <div class="quote__head">
+            <h3 class="quote__title">Hungry right now?</h3>
+            <p>Open 11 AM to 11 PM, every day.</p>
+          </div>
+          <div class="order-card__btns">
+            <a class="btn btn--red btn--big" data-wa="Hi New Bombay Sandwich! I'd like to place an order." href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+            <a class="btn btn--cream btn--big" data-tel href="#">Call 79905 42134</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Visit ============ -->
+    <section class="visit" id="visit" aria-labelledby="visit-h">
+      <div class="wave wave--cream wave--top" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 30C200 80 380 90 560 50S900 0 1080 40 1320 80 1440 40V90H0Z"/></svg></div>
+      <div class="wrap">
+        <h2 class="visit__title" id="visit-h">Come hungry</h2>
+
+        <div class="visit__grid">
+          <div class="tickets">
+            <article class="ticket">
+              <div class="ticket__main">
+                <p class="ticket__top"><span>Since 2014 · Bharuch</span><span class="status" data-hours="11:00-23:00">Open now</span></p>
+                <dl class="ticket__route">
+                  <div><dt>From</dt><dd>Wherever you are</dd></div>
+                  <div><dt>To</dt><dd>EVON Chowk</dd></div>
+                </dl>
+                <dl class="ticket__info">
+                  <div><dt>Address</dt><dd>EVON Chowk, Madhuram Party Plot, Bharuch 392011</dd></div>
+                  <div><dt>Timing</dt><dd>11 AM to 11 PM, all days</dd></div>
+                  <div><dt>Phone</dt><dd><a data-tel href="#"><span data-tel-text>+91 79905 42134</span></a></dd></div>
+                </dl>
+              </div>
+              <div class="ticket__stub">
+                <span class="ticket__class">Class<b>Hungry</b></span>
+                <a class="btn btn--ink btn--sm" data-dir href="#" target="_blank" rel="noopener">Directions</a>
+                <a class="btn btn--cream btn--sm" data-tel href="#">Call</a>
+              </div>
+            </article>
+
+            <article class="ticket ticket--soon">
+              <div class="ticket__main">
+                <p class="ticket__top"><span>Branch 2 · Bharuch</span><span class="status is-soon">Coming soon</span></p>
+                <dl class="ticket__route">
+                  <div><dt>From</dt><dd>Wherever you are</dd></div>
+                  <div><dt>To</dt><dd>To be announced</dd></div>
+                </dl>
+                <p class="ticket__soon">Our second shop opens soon. Want to be first in line?</p>
+              </div>
+              <div class="ticket__stub">
+                <span class="ticket__class">Class<b>Early</b></span>
+                <a class="btn btn--red btn--sm" data-wa="Hi! Please tell me when your new branch opens." href="#" target="_blank" rel="noopener">Notify me</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="map">
+            <iframe title="Map of New Bombay Sandwich, EVON Chowk, Bharuch" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=21.7178471406871,73.0367061528276&z=16&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="foot">
+    <div class="wave wave--red wave--top" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 50C160 10 300 10 480 40S800 90 980 50 1300 0 1440 30V90H0Z"/></svg></div>
+    <div class="wrap">
+      <div class="foot__top">
+        <p class="foot__line">Hungry yet?</p>
+        <div class="foot__ctas">
+          <a class="btn btn--yellow btn--big" data-wa="Hi New Bombay Sandwich! I'd like to place an order." href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+          <a class="btn btn--cream btn--big" href="#menu">See the menu</a>
+        </div>
+      </div>
+
+      <div class="foot__mark" aria-hidden="true">
+        <img class="drop d1" src="assets/cut/tomato.webp" alt="">
+        <img class="drop d2" src="assets/cut/chilli.webp" alt="">
+        <img class="drop d3" src="assets/cut/cucumber-1.webp" alt="">
+        <img class="drop d4" src="assets/cut/bread.webp" alt="">
+        <span>New Bombay</span>
+      </div>
+
+      <div class="foot__base">
+        <nav aria-label="Footer"><a href="#menu">Menu</a><a href="#order">Order ahead</a><a href="#visit">Visit</a><a href="https://www.instagram.com/newbombaysandwich.co" target="_blank" rel="noopener">Instagram</a><a data-tel href="#">79905 42134</a></nav>
+        <p>Love is our main ingredient. Since 2014, Bharuch. © <span id="year">2026</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="fab" data-wa="Hi New Bombay Sandwich! I'd like to place an order." href="#" target="_blank" rel="noopener" aria-label="Order on WhatsApp">Order</a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/menu-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
