@@ -125,7 +125,7 @@
       <h2 class="sr-only" id="routine-h">What we make</h2>
       <div class="routine__lines" aria-hidden="true">
         <p class="routine__line" data-dir="-1"><span>Grill sandwich</span><img src="assets/cut/bread.webp" alt=""><span>Grill sandwich</span><img src="assets/cut/bread.webp" alt=""><span>Grill sandwich</span><img src="assets/cut/bread.webp" alt=""></p>
-        <p class="routine__line routine__line--y" data-dir="1"><span>Puff · Pizza · Maggi</span><img src="assets/cut/chilli.webp" alt=""><span>Puff · Pizza · Maggi</span><img src="assets/cut/chilli.webp" alt=""><span>Puff · Pizza · Maggi</span><img src="assets/cut/chilli.webp" alt=""></p>
+        <p class="routine__line routine__line--y" data-dir="1"><span>Puff · Pizza · Maggi</span><img src="assets/cut/cheese.webp" alt=""><span>Puff · Pizza · Maggi</span><img src="assets/cut/cheese.webp" alt=""><span>Puff · Pizza · Maggi</span><img src="assets/cut/cheese.webp" alt=""></p>
         <p class="routine__line" data-dir="-1"><span>Cold coffee</span><img src="assets/cut/tomato-1.webp" alt=""><span>Maska bun</span><img src="assets/cut/tomato-1.webp" alt=""><span>Cold coffee</span><img src="assets/cut/tomato-1.webp" alt=""></p>
       </div>
 
@@ -142,28 +142,34 @@
     <!-- ============ Build (pinned) ============ -->
     <section class="build" id="build" aria-labelledby="build-h">
       <div class="wave wave--cream wave--top" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 30C200 80 380 90 560 50S900 0 1080 40 1320 80 1440 40V90H0Z"/></svg></div>
-      <div class="build__pin">
-        <h2 class="build__title" id="build-h"><span>What</span><span>goes in</span></h2>
-        <p class="build__hint">Our Veg Cheese Grill, one layer at a time. Keep scrolling.</p>
+      <div class="build__pin" id="buildPin" data-step="0">
+        <div class="build__copy">
+          <h2 class="build__title" id="build-h">What goes in</h2>
+          <p class="build__hint">Our Veg Cheese Grill, one layer at a time.</p>
+          <ol class="build__steps">
+            <li><b>1</b><span>Fresh bread<small>Soft sandwich bread, buttered.</small></span></li>
+            <li><b>2</b><span>Cucumber<small>Sliced thin, laid flat.</small></span></li>
+            <li><b>3</b><span>Tomato<small>Ripe, round slices.</small></span></li>
+            <li><b>4</b><span>Onion<small>Thin rings.</small></span></li>
+            <li><b>5</b><span>Cheese<small>Sliced on, plenty of it.</small></span></li>
+            <li><b>6</b><span>Grilled hot<small>Top slice on, pressed till the stripes show.</small></span></li>
+          </ol>
+          <div class="build__price">
+            <p><b>₹100</b>Veg Cheese Grill, 2 layer</p>
+            <a class="btn btn--red btn--sm" data-wa="Hi New Bombay Sandwich! I'd like to order: Veg Cheese Grill (2 layer), ₹100" href="#" target="_blank" rel="noopener">Order this</a>
+          </div>
+        </div>
 
         <div class="build__stack" aria-hidden="true">
           <img class="b-item b-bread" src="assets/cut/bread.webp" alt="">
           <img class="b-item b-cuc" src="assets/cut/cucumbers.webp" alt="">
+          <img class="b-item b-cuc2" src="assets/cut/cucumber-1.webp" alt="">
           <img class="b-item b-tom" src="assets/cut/tomato-1.webp" alt="">
           <img class="b-item b-tom2" src="assets/cut/tomato-2.webp" alt="">
-          <img class="b-item b-chilli" src="assets/cut/chilli.webp" alt="">
-          <img class="b-item b-grill" src="assets/cut/grill-pair.webp" alt="">
+          <img class="b-item b-onion" src="assets/cut/onion.webp" alt="">
+          <img class="b-item b-cheese" src="assets/cut/cheese.webp" alt="">
+          <img class="b-item b-grill" src="assets/cut/sandwich-whole.webp" alt="">
         </div>
-
-        <ol class="build__tags">
-          <li class="sticker tag t1">Fresh bread</li>
-          <li class="sticker sticker--green tag t2">Cucumber</li>
-          <li class="sticker tag t3">Tomato</li>
-          <li class="sticker sticker--green tag t4">Green chilli. Your call</li>
-          <li class="sticker sticker--yellow tag t5">Cheese. Grilled hot</li>
-        </ol>
-
-        <p class="build__price"><b>₹100</b> Veg Cheese Grill, 2 layer.</p>
       </div>
     </section>
 
@@ -177,6 +183,11 @@
           <p class="board__note"><span class="veg" aria-hidden="true"></span>100% veg. 15 sections. Prices in ₹.</p>
         </div>
 
+        <!-- Phones and tablets: every section as a tile. Tapping one opens the menu sheet at that section. -->
+        <nav class="mcats" id="mcats" aria-label="Menu sections"></nav>
+        <button class="btn btn--yellow mopen" type="button" data-open-menu>Open the full menu</button>
+
+        <!-- Desktop: tabs, rows and a plate that fills on hover -->
         <div class="tabs" role="tablist" aria-label="Menu sections" id="tabs"></div>
 
         <div class="board__grid">
@@ -348,7 +359,7 @@
 
       <div class="foot__mark" aria-hidden="true">
         <img class="drop d1" src="assets/cut/tomato.webp" alt="">
-        <img class="drop d2" src="assets/cut/chilli.webp" alt="">
+        <img class="drop d2" src="assets/cut/tomato-2.webp" alt="">
         <img class="drop d3" src="assets/cut/cucumber-1.webp" alt="">
         <img class="drop d4" src="assets/cut/bread.webp" alt="">
         <span>New Bombay</span>
@@ -360,6 +371,17 @@
       </div>
     </div>
   </footer>
+
+  <!-- Menu sheet (phones and tablets): one section per swipe, so the page itself stays short -->
+  <div class="msheet" id="msheet" role="dialog" aria-modal="true" aria-labelledby="msheetTitle" aria-hidden="true" data-lenis-prevent>
+    <div class="msheet__top">
+      <p class="msheet__title" id="msheetTitle">The menu</p>
+      <p class="msheet__note"><span class="veg" aria-hidden="true"></span>100% veg</p>
+      <button class="msheet__close" id="msheetClose" type="button">Close</button>
+    </div>
+    <nav class="mnav" aria-label="Menu sections"><div class="mnav__track" id="mnavTrack"></div></nav>
+    <div class="mpanes" id="mpanes"></div>
+  </div>
 
   <a class="fab" data-wa="Hi New Bombay Sandwich! I'd like to place an order." href="#" target="_blank" rel="noopener" aria-label="Order on WhatsApp">Order</a>
 

@@ -182,6 +182,120 @@
   });
   if (CATS.length) renderRows(CATS[0].id);
 
+  /* ---------- Phones and tablets: section tiles on the page, the full menu in a sheet ---------- */
+  const mcats = $('#mcats');
+  const sheet = $('#msheet');
+  const mnavTrack = $('#mnavTrack');
+  const mpanes = $('#mpanes');
+  const itemsOf = (id) => MENU.filter((m) => m.cat === id);
+  const catImg = (id) => (itemsOf(id)[0] || {}).img || 'paneer-tikka.jpg';
+  const variantMsg = (m, l, p) => `Hi New Bombay Sandwich! I'd like to order: ${m.name}${l ? ' (' + l + ')' : ''}, ${inr(p)}`;
+
+  mcats.innerHTML = CATS.map((c) => `
+    <button class="mcat" type="button" data-open-menu="${c.id}">
+      <span class="mcat__photo"><img src="assets/img/${catImg(c.id)}" alt="" loading="lazy"></span>
+      <span class="mcat__name">${c.label}</span>
+      <span class="mcat__n">${itemsOf(c.id).length} items</span>
+    </button>`).join('');
+
+  mnavTrack.innerHTML = CATS.map((c, i) => `<button class="mchip" type="button" data-pane="${i}">${c.label}</button>`).join('');
+
+  const mrowHTML = (m) => {
+    const orders = m.v.map(([l, p]) => `<a class="btn btn--yellow btn--sm" href="${waLink(variantMsg(m, l, p))}" target="_blank" rel="noopener">Order${l ? ' ' + l : ''} · ${inr(p)}</a>`).join('');
+    return `
+      <li class="mrow">
+        <button class="mrow__btn" type="button" aria-expanded="false" aria-controls="mm-${m.id}">
+          <span class="mrow__name">${m.name}</span>
+          <span class="mrow__price">${m.v.length > 1 ? '<small>from</small>' : ''}${inr(fromPrice(m))}</span>
+          ${hasVariants(m) ? `<span class="mrow__vars">${m.v.map(([l, p]) => `<span>${l || 'Regular'} <b>${inr(p)}</b></span>`).join('')}</span>` : ''}
+        </button>
+        <div class="mrow__more" id="mm-${m.id}"><div><div class="mrow__orders">${orders}</div></div></div>
+      </li>`;
+  };
+
+  mpanes.innerHTML = CATS.map((c, i) => `
+    <section class="mpane" aria-labelledby="mh-${c.id}">
+      <header class="msec__head">
+        <span class="msec__photo"><img src="assets/img/${catImg(c.id)}" alt="" loading="lazy"></span>
+        <div>
+          <h3 class="msec__title" id="mh-${c.id}">${c.label}</h3>
+          <p class="msec__blurb">${itemsOf(c.id).length} items. ${c.blurb || ''}</p>
+        </div>
+      </header>
+      <ul class="msec__rows">${itemsOf(c.id).map(mrowHTML).join('')}</ul>
+      ${i < CATS.length - 1 ? `<button class="mnext" type="button" data-pane="${i + 1}">Next: ${CATS[i + 1].label}</button>` : ''}
+    </section>`).join('');
+  const panes = $$('.mpane', mpanes);
+
+  // Which section is showing. Swiping sideways moves between sections.
+  let paneIdx = 0;
+  const markPane = (i) => {
+    paneIdx = i;
+    $$('.mchip', mnavTrack).forEach((c, j) => {
+      const on = j === i;
+      c.classList.toggle('is-on', on);
+      c.setAttribute('aria-current', on ? 'true' : 'false');
+      if (on) mnavTrack.scrollTo({ left: c.offsetLeft - mnavTrack.clientWidth / 2 + c.offsetWidth / 2, behavior: 'smooth' });
+    });
+  };
+  const goPane = (i, smooth = true) => {
+    mpanes.scrollTo({ left: i * mpanes.clientWidth, behavior: smooth && !reduce ? 'smooth' : 'auto' });
+    panes[i].scrollTop = 0;
+    markPane(i);
+  };
+  let paneRaf = 0;
+  mpanes.addEventListener('scroll', () => {
+    cancelAnimationFrame(paneRaf);
+    paneRaf = requestAnimationFrame(() => {
+      const i = Math.round(mpanes.scrollLeft / mpanes.clientWidth);
+      if (i !== paneIdx) markPane(i);
+    });
+  }, { passive: true });
+
+  // Open and close. The phone's back button closes the sheet too.
+  let opener = null;
+  const openSheet = (id, from) => {
+    opener = from || null;
+    const i = Math.max(0, CATS.findIndex((c) => c.id === id));
+    root.classList.add('sheet-open');
+    sheet.setAttribute('aria-hidden', 'false');
+    lock(true);
+    goPane(i, false);
+    if (history.state !== 'menu') history.pushState('menu', '');
+    setTimeout(() => $('#msheetClose').focus({ preventScroll: true }), 50);
+  };
+  const closeSheet = (fromPop) => {
+    if (!root.classList.contains('sheet-open')) return;
+    root.classList.remove('sheet-open');
+    sheet.setAttribute('aria-hidden', 'true');
+    lock(false);
+    if (!fromPop && history.state === 'menu') history.back();
+    if (opener) opener.focus({ preventScroll: true });
+  };
+  document.addEventListener('click', (e) => {
+    const o = e.target.closest('[data-open-menu]');
+    if (o) { e.preventDefault(); openSheet(o.dataset.openMenu, o); }
+  });
+  $('#msheetClose').addEventListener('click', () => closeSheet(false));
+  addEventListener('popstate', () => closeSheet(true));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(false); });
+  sheet.addEventListener('click', (e) => {
+    const c = e.target.closest('[data-pane]');
+    if (c) goPane(+c.dataset.pane);
+  });
+  addEventListener('resize', () => { if (root.classList.contains('sheet-open')) goPane(paneIdx, false); });
+
+  // Tap a row to show its order buttons. One open at a time.
+  mpanes.addEventListener('click', (e) => {
+    const b = e.target.closest('.mrow__btn');
+    if (!b) return;
+    const r = b.parentElement;
+    const open = !r.classList.contains('is-open');
+    $$('.mrow.is-open', mpanes).forEach((o) => { o.classList.remove('is-open'); $('.mrow__btn', o).setAttribute('aria-expanded', 'false'); });
+    r.classList.toggle('is-open', open);
+    b.setAttribute('aria-expanded', open);
+  });
+
   /* ==================================================================
      Open / closed status
      ================================================================== */
@@ -415,36 +529,57 @@
     gsap.fromTo(el, { yPercent: -s * 100 }, { yPercent: s * 100, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.5 } });
   });
 
-  /* ---------- Build: ingredients fly in and stack, then the press ---------- */
+  /* ---------- Build: the sandwich stacks up one layer per step, then the grill press ---------- */
   (() => {
-    const stack = $('.build__stack');
+    const pin = $('#buildPin');
+    const stack = $('.build__stack', pin);
+    const steps = $$('.build__steps li', pin);
     const S = () => stack.offsetWidth;
-    const [bread, cuc, tom, tom2, chilli, grill] = $$('.b-item', stack);
-    const tag = (n) => $('.t' + n);
-    gsap.set([bread, cuc, tom, tom2, chilli, grill], { xPercent: -50, yPercent: -50, x: 0, y: 0 });
-    gsap.set($$('.tag'), { scale: 0 });
-    gsap.set('.build__price', { scale: 0, rotation: -25 });
-    const pop = { scale: 1, duration: 0.3, ease: 'back.out(3)' };
+    const [bread, cuc, cuc2, tom, tom2, onion, cheese, grill] = $$('.b-item', stack);
+    const items = [bread, cuc, cuc2, tom, tom2, onion, cheese, grill];
+    gsap.set(items, { xPercent: -50, yPercent: -50, x: 0, y: 0 });
 
-    gsap.timeline({
-      scrollTrigger: { trigger: '#build', start: 'top top', end: '+=2800', pin: '.build__pin', scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1 },
-    })
-      .fromTo(bread, { y: () => innerHeight, rotation: 50 }, { y: 0, rotation: -8, duration: 1, ease: 'power3.out' })
-      .to(tag(1), pop, '-=0.25')
-      .fromTo(cuc, { x: () => -innerWidth, rotation: -200 }, { x: () => -S() * 0.1, y: () => -S() * 0.1, rotation: 0, duration: 1, ease: 'power3.out' })
-      .to(tag(2), pop, '-=0.25')
-      .fromTo(tom, { x: () => innerWidth, y: () => -S() * 0.6, rotation: 220 }, { x: () => S() * 0.17, y: () => S() * 0.1, rotation: 20, duration: 1, ease: 'power3.out' })
-      .fromTo(tom2, { x: () => innerWidth * 0.8, y: () => innerHeight * 0.7, rotation: -160 }, { x: () => -S() * 0.17, y: () => S() * 0.2, rotation: -10, duration: 0.9, ease: 'power3.out' }, '<0.15')
-      .to(tag(3), pop, '-=0.25')
-      .fromTo(chilli, { y: () => -innerHeight, rotation: 300 }, { x: () => S() * 0.03, y: () => -S() * 0.02, rotation: -30, duration: 1, ease: 'power3.out' })
-      .to(tag(4), pop, '-=0.25')
-      .fromTo(grill, { y: () => -innerHeight * 1.2, rotation: 35 }, { y: 0, rotation: -6, duration: 0.9, ease: 'power3.in' })
-      .to(grill, { scaleY: 0.84, scaleX: 1.1, duration: 0.12, ease: 'power2.out' })
+    const showStep = (n) => {
+      if (pin.dataset.step === String(n)) return;
+      pin.dataset.step = n;
+      steps.forEach((li, i) => {
+        li.classList.toggle('is-on', i === n - 1 || (n === 7 && i === 5));
+        li.classList.toggle('is-past', i < n - 1 && !(n === 7 && i === 5));
+      });
+    };
+    showStep(1);
+
+    const fly = { duration: 1, ease: 'power3.out' };
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#build', start: 'top top', end: () => '+=' + (wide.matches ? 3000 : 1800), pin: pin, scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1,
+      },
+      // Follow the timeline itself (not the raw scroll) so the label matches what is on screen
+      onUpdate: () => {
+        const t = tl.time();
+        let n = 1;
+        ['s2', 's3', 's4', 's5', 's6', 'done'].forEach((l, i) => { if (t >= tl.labels[l] - 0.05) n = i + 2; });
+        showStep(n);
+      },
+    });
+    tl.addLabel('s1')
+      .fromTo(bread, { y: () => innerHeight, rotation: 40 }, { y: 0, rotation: -6, ...fly })
+      .addLabel('s2')
+      .fromTo(cuc, { x: () => -innerWidth, rotation: -200 }, { x: () => -S() * 0.14, y: () => -S() * 0.12, rotation: 0, ...fly })
+      .fromTo(cuc2, { x: () => innerWidth, y: () => -S(), rotation: 180 }, { x: () => S() * 0.2, y: () => -S() * 0.2, rotation: 20, ...fly }, '<0.15')
+      .addLabel('s3')
+      .fromTo(tom, { x: () => innerWidth, y: () => -S() * 0.4, rotation: 220 }, { x: () => S() * 0.16, y: () => S() * 0.08, rotation: 20, ...fly })
+      .fromTo(tom2, { x: () => -innerWidth * 0.8, y: () => innerHeight * 0.6, rotation: -160 }, { x: () => -S() * 0.17, y: () => S() * 0.19, rotation: -10, ...fly }, '<0.15')
+      .addLabel('s4')
+      .fromTo(onion, { y: () => -innerHeight, rotation: 140 }, { x: () => S() * 0.02, y: () => -S() * 0.02, rotation: 12, ...fly })
+      .addLabel('s5')
+      .fromTo(cheese, { y: () => -innerHeight, scale: 0.6, rotation: -40 }, { y: () => S() * 0.02, scale: 1, rotation: 0, ...fly })
+      .addLabel('s6')
+      .fromTo(grill, { y: () => -innerHeight * 1.2, rotation: 30 }, { y: 0, rotation: -5, duration: 0.9, ease: 'power3.in' })
+      .to(grill, { scaleY: 0.86, scaleX: 1.08, duration: 0.12, ease: 'power2.out' })
       .to(grill, { scaleY: 1, scaleX: 1, duration: 0.5, ease: 'elastic.out(1, 0.35)' })
-      .to(tag(5), { scale: 1, duration: 0.35, ease: 'back.out(3)' }, '<')
-      .to('.build__price', { scale: 1, rotation: -4, duration: 0.45, ease: 'back.out(2.5)' }, '<0.1')
-      .to('.build__title', { scale: 1.06, duration: 0.4, ease: 'none' }, '<')
-      .to({}, { duration: 0.5 });
+      .addLabel('done')
+      .to({}, { duration: 0.8 });
   })();
 
   /* ---------- Taxi drives the route with your scroll ---------- */
